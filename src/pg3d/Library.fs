@@ -1,4 +1,4 @@
-﻿namespace FSharp.ProjectTemplate
+namespace pg3d
 
 /// Documentation for my library
 ///

@@ -1,6 +1,6 @@
-﻿module FSharp.ProjectScaffold.Tests
+module pg3d.Tests
 
-open FSharp.ProjectTemplate
+open pg3d
 open NUnit.Framework
 
 [<Test>]
