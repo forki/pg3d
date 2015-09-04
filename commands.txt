@@ -1,0 +1,22 @@
+PAKET
+=====
+
+.paket/paket.exe update
+	- run the above after changing packet dependencies in the /packet.dependencies file
+
+.paket/paket.exe add nuget PACKAGENAME [version VERSION] -i
+	- add a new dependency, in interactive mode
+	- e.g. .paket/paket.exe add nuget FunScript.TypeScript.Binding.svgjs -i
+
+BUILD
+=====	
+	
+./build
+	- builds it
+	
+TBD
+===
+
+ - TS - EOC
+ - x2 one
+ - superellipsoid 
