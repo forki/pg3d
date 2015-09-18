@@ -7,6 +7,12 @@ PAKET
 .paket/paket.exe add nuget PACKAGENAME [version VERSION] -i
 	- add a new dependency, in interactive mode
 	- e.g. .paket/paket.exe add nuget FunScript.TypeScript.Binding.svgjs -i
+	
+.paket/paket.exe remove nuget PACKAGENAME
+	- remove a dependency
+
+.paket/paket.exe restore 
+	- restore all files after deleting packages directory
 
 BUILD
 =====	

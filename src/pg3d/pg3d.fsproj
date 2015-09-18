@@ -60,10 +60,13 @@
   -->
   <Import Project="..\..\.paket\paket.targets" />
   <ItemGroup>
-    <None Include="Script.fsx" />
     <None Include="paket.references" />
     <None Include="paket.template" />
+    <Compile Include="Maths.fs" />
+    <Compile Include="Rescale.fs" />
+    <Compile Include="Reshape.fs" />
     <Compile Include="Eggs.fs" />
+    <Compile Include="EggDemo.fs" />
     <None Include="index.html" />
     <Content Include="three_lambertoon_c.js" />
     <None Include="threeJsTestTexture.jpg" />
