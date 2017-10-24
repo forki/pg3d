@@ -72,21 +72,18 @@
     <Content Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="FsCheck.Xunit">
-      <HintPath>..\..\packages\FsCheck.Xunit\lib\net45\FsCheck.Xunit.dll</HintPath>
-    </Reference>
     <Reference Include="FsUnit.CustomMatchers">
-      <HintPath>..\..\packages\FsUnit.xUnit\Lib\net40\FsUnit.CustomMatchers.dll</HintPath>
+      <HintPath>..\..\packages\FsUnit\lib\FsUnit.CustomMatchers.dll</HintPath>
     </Reference>
-    <Reference Include="FsUnit.Xunit">
-      <HintPath>..\..\packages\FsUnit.xUnit\Lib\net40\FsUnit.Xunit.dll</HintPath>
+    <Reference Include="FsUnit.NUnit">
+      <HintPath>..\..\packages\FsUnit\lib\FsUnit.NUnit.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="FSharp.Core, Version=$(TargetFSharpCoreVersion), Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="NHamcrest">
-      <HintPath>..\..\packages\FsUnit.xUnit\Lib\net40\NHamcrest.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\packages\NUnit\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -96,9 +93,6 @@
       <Project>{817e43dd-0c60-436f-8589-ad0424fb01b9}</Project>
       <Private>True</Private>
     </ProjectReference>
-    <Reference Include="xunit.assert">
-      <HintPath>..\..\packages\xunit.assert\lib\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.assert.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6')">

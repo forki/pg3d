@@ -1,47 +1,36 @@
 ﻿[<ReflectedDefinition>]
 module pg3d.Eggs
 
+/// (To understand these equations, desmos.com/calculator is useful)
+
 type EggParameters = { a:float; b:float; c:float; d:float; e:float }
 
 /// Eggquation-1, Oval - 1 parameter mod
 ///
-/// b^2 * y^2  +  a^2 * x^2  +  2 * d * y * x^2  + d^2 * x^2 -  a^2 * b^2  =  0
-/// x = ((b * b * (a * a - y * y) / (a * a + 2.0 * d * y + d * d)))^0.5
+/// x = ((b * b * (a * a - y * y) / (a * a + 2.0 * c * y + c * c)))^0.5
 
-let eggquation1 a b d y =
-    Maths.sqrt((b * b * (a * a - y * y) / (a * a + 2.0 * d * y + d * d)))
+let eggquation1 a b c y =
+    Maths.sqrt((b * b * (a * a - y * y) / (a * a + 2.0 * c * y + c * c)))
 
 /// Tame equation 1, for y in range -1 to 1. Output always <= 1
 
 let tameEggquation1 width shape y =
     let b = Maths.clampZeroOne width
-    let d = Maths.clampInsideMinusOneOne shape
-    eggquation1 1.0 b d y
+    let c = Maths.clampInsideMinusOneOne shape
+    eggquation1 1.0 b c y
 
-/// Eggquation-2, for y in range -1 to 1. Parameters a b c (>= 0) (a < b < c)
-///
-/// Cubic
+/// Eggquation-2, Cubic
 ///
 /// x = ((y-a)(y-b)(y-c))^0.5
-/// -1.5 then * 2
-///
-/// TBD QUARTIC ????? x = ((y-a)(y-b)(y-c)(y-d))^0.5 ?????
 
-let eggquation2MinInput (a:float) (b:float) (c:float) = List.min [a; b; c]
-let eggquation2MaxInput (a:float) (b:float) (c:float) = List.nth (List.sort [a; b; c]) 1
+let eggquation2 a b c y =
+    Maths.sqrt ((y - a) * (y - b) * (y - c))
 
-System.Console.WriteLine("eggquation2MinInput {0}", eggquation2MinInput 1. 2. 3.)
-System.Console.WriteLine("eggquation2MaxInput {0}", eggquation2MaxInput 1. 2. 3.)
-
-let eggquation2 a b c y' =
-    let yInputMin = eggquation2MinInput a b c
-    let yInputMax = eggquation2MaxInput a b c
-    let yInputRange = yInputMax - yInputMin
-    let y = yInputMin + ((y' + 1.0) / 2.0 * yInputRange)
-    //if y > 2.0 || y < 1.0 then
-    //    System.Console.WriteLine("eggquation2ActualYInput out of range: {0} (from {1})", y, y')
-    let value = Maths.sqrt ((y - a) * (y - b) * (y - c) * 0.5)
-    value
+let tameEquation2 width shape reshape =
+    let b = Maths.clamp Maths.justBelowMinusOne -20.0 shape
+    let c = Maths.clamp Maths.justAboveOne 20.0 reshape
+    let rawNeedsScaling = eggquation2 -1.0 b c
+    rawNeedsScaling
 
 /// Rethink parameters -
 ///    fatness, shape, bulge - try to map to same

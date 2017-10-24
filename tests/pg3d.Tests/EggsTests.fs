@@ -4,12 +4,10 @@ open pg3d
 
 open System
 
-open Xunit
-open FsUnit.Xunit
-open FsCheck
-open FsCheck.Xunit
+open NUnit.Framework
+open FsUnit
 
-[<Fact>]
+[<Test>]
 let ``Eggquation 1 - For y from 1 to -1, on the x axis, the gradient should decrease`` () =
     let dy = 0.001
     let yRange = [1.0..(-dy)..(-1.0 + dy) ]
@@ -18,11 +16,12 @@ let ``Eggquation 1 - For y from 1 to -1, on the x axis, the gradient should decr
         let y1 = y0 - dy
         let x1 = Eggs.eggquation1 4. 3. 1. y1
         let dx = x1 - x0
-        FsUnit.//Less(dx, prevDx, sprintf "failure at y0 %f x0 %f y1 %f x1 %f dx %f prevDx %f" y0 x0 y1 x1 dx prevDx)
+        FsUnit.Assert.Less(dx, prevDx, sprintf "failure at y0 %f x0 %f y1 %f x1 %f dx %f prevDx %f" y0 x0 y1 x1 dx prevDx)
         dx
     ) System.Double.MaxValue
     |> ignore
 
+[<Test>]
 let ``Eggquation 2 - For y from 1 to -1, on the x axis, the gradient should decrease`` () =
     let dy = 0.01
     let yRange = [1.0..(-dy)..(-1.0 + dy) ]
@@ -36,11 +35,12 @@ let ``Eggquation 2 - For y from 1 to -1, on the x axis, the gradient should decr
     ) System.Double.MaxValue
     |> ignore
 
-let ``Tame Eggquation 1 - For y from 1 to -1, on the x axis, the output should be proportional to width`` () =
+[<Test>]
+let public ``Tame Eggquation 1 - For y from 1 to -1, on the x axis, the output should be proportional to width`` () =
     let dy = 0.01
     let yRange = [1.0..(-dy)..(-1.0) ]
     let ds = 0.01
-    let shapeRange = [-0.5..ds..0.5] //[Maths.justAboveMinusOne..ds..Maths.justBelowOne ]
+    let shapeRange = [Maths.justAboveMinusOne..ds..Maths.justBelowOne ]
     yRange |> Seq.iter (fun y ->
         shapeRange |> Seq.iter (fun s ->
 

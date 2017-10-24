@@ -68,6 +68,9 @@
     <Compile Include="Eggs.fs" />
     <Compile Include="EggDemo.fs" />
     <None Include="index.html" />
+    <Content Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="three_lambertoon_c.js" />
     <None Include="threeJsTestTexture.jpg" />
   </ItemGroup>

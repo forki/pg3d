@@ -15,14 +15,14 @@ PAKET
 	- restore all files after deleting packages directory
 
 BUILD
-=====	
-	
-./build
+=====
+
+./build.sh
 	- builds it
-	
+
 TBD
 ===
 
  - TS - EOC
  - x2 one
- - superellipsoid 
+ - superellipsoid

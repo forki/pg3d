@@ -1,14 +1,12 @@
 source https://nuget.org/api/v2
 
-nuget FsCheck.Xunit
 nuget FSharp.Core
 nuget FSharp.Formatting
-nuget FsUnit.xUnit
+nuget FsUnit
 nuget FunScript
 nuget FunScript.TypeScript.Binding.three
 nuget FAKE
+nuget nunit
 nuget SourceLink.Fake
-nuget fscheck
-nuget xunit
 
 github fsharp/FAKE modules/Octokit/Octokit.fsx

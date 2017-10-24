@@ -17,11 +17,11 @@ let createSlider id label setterFunc =
     let input = Globals.document.createElement("input")
 
     input.setAttribute("type", "range")
-    input.setAttribute("min", "0")
-    input.setAttribute("max", "100")
-    input.setAttribute("step", "1")
-    input.setAttribute("value", "50")
-    input.setAttribute("prevValue", "50")
+    input.setAttribute("min", "0.0")
+    input.setAttribute("max", "1.0")
+    input.setAttribute("step", "0.01")
+    input.setAttribute("value", "0.5")
+    input.setAttribute("prevValue", "0.5")
     input.setAttribute("id", id)
 
     input.onmousemove <- (fun e ->
@@ -31,7 +31,7 @@ let createSlider id label setterFunc =
         (e.srcElement :?> HTMLInputElement).setAttribute("prevValue", currentValue)
 
         if (currentValue <> previousValue) then
-            ((e.srcElement :?> HTMLInputElement).nextElementSibling :?> HTMLInputElement).value <- (e.srcElement :?> HTMLInputElement).value + "%"
+            ((e.srcElement :?> HTMLInputElement).nextElementSibling :?> HTMLInputElement).value <- (Maths.parseFloat((e.srcElement :?> HTMLInputElement).value) * 100.0).ToString() + "%"
             setterFunc (Maths.parseFloat(currentValue))
 
         null
